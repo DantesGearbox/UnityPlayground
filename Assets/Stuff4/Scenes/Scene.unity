@@ -587,8 +587,9 @@ GameObject:
   - component: {fileID: 1733640236}
   - component: {fileID: 1733640238}
   - component: {fileID: 1733640239}
+  - component: {fileID: 1733640241}
   - component: {fileID: 1733640240}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,10 +709,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpVector: {x: 0, y: 40}
   airJumpVector: {x: 0, y: 40}
-  jumpKey: 331
-  leftKey: 276
-  rightKey: 275
-  horizontalAxis: 
+  jumpKey: 32
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
   minJumpVelocity: 10
   moveSpeed: 12
   airJumps: 1
@@ -719,6 +719,25 @@ MonoBehaviour:
   specialJumpVectorRight: {x: 40, y: 30}
   specialJumpVectorLeft: {x: -40, y: 30}
   specialMovespeedSlowdown: 1
+--- !u!114 &1733640241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1733640235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be875fad83da24b8f8152065ba177eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 1
+  horizontalRayCount: 0
+  verticalRayCount: 0
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  boxCollider: {fileID: 0}
 --- !u!1 &2008691558
 GameObject:
   m_ObjectHideFlags: 0

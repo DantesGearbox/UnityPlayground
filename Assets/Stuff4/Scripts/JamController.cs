@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class JamController : MonoBehaviour {
 
+	private RaycastController rc;
 	private Rigidbody2D rb;
 	private bool jumpPressed = false;
 	private bool jumpLetGo = false;
 	public Vector2 jumpVector = new Vector2 (0, 40); 
 	public Vector2 airJumpVector = new Vector2 (0, 40);
-	public KeyCode jumpKey = KeyCode.JoystickButton1;
-	public KeyCode leftKey = KeyCode.LeftArrow;
-	public KeyCode rightKey = KeyCode.RightArrow;
-	public string horizontalAxis;
+	public KeyCode jumpKey = KeyCode.Space; //Default PS4: KeyCode.JoystickButton1
+	public string horizontalAxis = "Horizontal"; //Default PS4: "HorizontalJ"
+	public string verticalAxis = "Vertical"; //Default PS4: "VerticalJ"
 	public int minJumpVelocity = 10;
 	private float directionalInput;
 	public int moveSpeed = 12;
@@ -42,6 +42,7 @@ public class JamController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		rc = GetComponent<RaycastController> ();
 		rb = GetComponent<Rigidbody2D> ();
 	}
 
@@ -79,8 +80,8 @@ public class JamController : MonoBehaviour {
 		}
 
 		/*
-		Debug.Log ("VerticalJ: " + Input.GetAxisRaw ("VerticalJ"));
-		Debug.Log ("HorizontalJ: " + Input.GetAxisRaw ("HorizontalJ"));
+		Debug.Log ("VerticalAxis: " + Input.GetAxisRaw (verticalAxis));
+		Debug.Log ("HorizontalAxis: " + Input.GetAxisRaw (horizontalAxis));
 		test2.Check ();
 		test3.Check ();
 		test4.Check ();
@@ -99,7 +100,7 @@ public class JamController : MonoBehaviour {
 			jumpLetGo = true;
 		}
 
-		directionalInput = Input.GetAxisRaw ("HorizontalJ");
+		directionalInput = Input.GetAxisRaw (horizontalAxis);
 
 	}
 
@@ -111,7 +112,7 @@ public class JamController : MonoBehaviour {
 		if(rb.velocity.x >= -12 && rb.velocity.x <= 12){
 			rb.velocity = new Vector2 (targetVelocityX , rb.velocity.y);	
 		} else {
-			// If targetVelocity is going opposite of speed, slow down.
+			// If targetVelocity (user input) is going opposite of speed, slow down by set amount.
 			if(Mathf.Sign (targetVelocityX) != Mathf.Sign (rb.velocity.x)){
 				rb.velocity = new Vector2 (rb.velocity.x + specialMovespeedSlowdown * Mathf.Sign (targetVelocityX) , rb.velocity.y);
 			}
